@@ -70,7 +70,7 @@
                             <label for="image">Activity Image</label>
                         </div>
                         <input class="form-control @error('image') is-invalid @enderror"
-                        name="image[]" id="image" type="file" multiple required>
+                        name="image" id="image" type="file" multiple required>
                     </div>
                  </div>
                  <div class="col-md-8">
@@ -95,9 +95,24 @@
 
 @section('script')
 <script>
-        document.addEventListener('trip-file-accept', function(e))
-        {
-            e.preventDefault();
+
+                // Register FilePond plugins
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+
+// Get a reference to the file input element
+const inputElement = document.querySelector('input[id="image"]');
+
+// Create a FilePond instance
+const pond = FilePond.create(inputElement, {
+    allowMultiple: true, // Allow multiple files
+    server: {
+        process: '/upload',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token from your server-side framework
         }
+    }
+});
+
+
 </script>
 @endsection

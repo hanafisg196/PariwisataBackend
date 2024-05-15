@@ -2,7 +2,6 @@
 <html class="loading" lang="en" 
 data-textdirection="ltr">
 @include('_partials/head')
-
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
       data-menu="vertical-menu-modern" data-col="">
 @include('_partials/navbar')
@@ -66,7 +65,8 @@ data-textdirection="ltr">
 
 
 @include('_partials.footer')
-
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 @yield('script')
 </body>
 </html>

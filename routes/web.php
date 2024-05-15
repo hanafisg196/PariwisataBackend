@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\UploadImageTmpController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +32,6 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::get('destination/addform', [DestinationController::class, 'addView']);
     Route::post('destination/create', [DestinationController::class, 'create']);
     Route::post('destination/delete/{id}', [DestinationController::class, 'delete']);
+    Route::post('/upload', [UploadImageTmpController::class, 'store']);
 });
 
