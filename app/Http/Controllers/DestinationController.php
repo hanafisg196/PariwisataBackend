@@ -10,4 +10,8 @@ class DestinationController extends Controller
     {
         return view('dashboard.destination');
     }
+    public function add()
+    {
+        return view('dashboard.destinationadd');
+    }
 }

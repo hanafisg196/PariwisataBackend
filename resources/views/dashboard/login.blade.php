@@ -57,7 +57,7 @@
                     <!-- Login basic -->
                     <div class="card mb-0">
                         <div class="card-body">
-                            <h4 class="card-title mb-1">Welcome to Aniwall Wallpaper</h4>
+                            <h4 class="card-title mb-1">Selamat Datang</h4>
                             <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
                             @if(session()->has('error'))
                             <div class="row">
