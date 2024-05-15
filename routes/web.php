@@ -28,6 +28,8 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::get('destination', [DestinationController::class, 'index']);
     Route::post('trip/add', [TripController::class, 'add']);
     Route::post('trip/update/{id}', [TripController::class, 'update']);
-    Route::get('destination/add', [DestinationController::class, 'add']);
+    Route::get('destination/addform', [DestinationController::class, 'addView']);
+    Route::post('destination/create', [DestinationController::class, 'create']);
+    Route::post('destination/delete/{id}', [DestinationController::class, 'delete']);
 });
 

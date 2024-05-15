@@ -11,26 +11,93 @@
         </div>
 </div>
     
-    <form class="auth-login-form mt-2" method="post" action="/trip/add/"enctype="multipart/form-data">
+    <form class="auth-login-form mt-2" method="post" action="/destination/create/"enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
             <div class="row">
+                @include('_partials.alert')
                 <div class="col-md-8">
-                    <div class="mb-2" id="title" style="display: block">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="" placeholder="Wisata Mandeh">
+                    <div class="mb-1" id="title" style="display: block">
+                        <div class="mb-1">
+                            <label for="title">Title</label>
+                        </div>
+                        <input type="text" class="form-control  @error('title') is-invalid @enderror" id="title" name="title" placeholder="Wisata Mandeh">
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="mb-1">
+                        <div class="mt-1">
+                            <label for="trip_id">Trip</label>
+                        </div>
+                        <select  name="trip_id" id="trip_id" class="form-control">
+                            @foreach ($trip as $item)
+                            <option value="{{ $item->id }}">
+                                {{ $item->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="mb-2" id="title" style="display: block">
-                        <label for="title">Lokasi</label>
-                        <input type="text" class="form-control" id="title" name="title" value="" placeholder="Jl. Wisata satu">
+                    <div class="mb-1" id="daerah" style="display: block">
+                        <div class="mb-1">
+                            <label for="daerah">Daerah</label>
+                        </div>
+                        <input type="text" class="form-control  @error('daerah') is-invalid @enderror" id="daerah" name="daerah" placeholder="Nama Daerah Wisata">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                <div class="mb-1">
+                    <div class="mb-1">
+                        <label for="cover">Cover</label>
+                    </div>
+                    <input class="form-control @error('cover') is-invalid @enderror"
+                    name="cover" id="cover" type="file">
+                </div>
+                 </div>
+                <div class="col-md-8">
+                <div class="mb-1">
+                    <div class="mb-1">
+                        <label for="article">Article</label>
+                    </div>
+                    <input id="article" class="form-control @error('article') is-invalid @enderror"type="hidden" name="article">
+                    <trix-editor input="article"></trix-editor>
+                </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="mb-1">
+                        <div class="mb-1">
+                            <label for="image">Activity Image</label>
+                        </div>
+                        <input class="form-control @error('image') is-invalid @enderror"
+                        name="image[]" id="image" type="file" multiple required>
+                    </div>
+                 </div>
+                 <div class="col-md-8">
+                    <div class="mb-1" id="location" style="display: block">
+                        <div class="mb-1">
+                            <label for="location">Lokasi</label>
+                        </div>
+                        <input type="text" class="form-control @error('location') is-invalid @enderror" id="location" name="location" placeholder="Jl. Wisata satu">
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="modal-footer">
+                    
+            <button class="btn btn-gradient-primary float-end" type="submit">Submit</button>
+            
         </div>
     </form>
 </div>
 
 @endsection
 
+@section('script')
+<script>
+        document.addEventListener('trip-file-accept', function(e))
+        {
+            e.preventDefault();
+        }
+</script>
+@endsection

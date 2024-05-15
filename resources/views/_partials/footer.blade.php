@@ -11,7 +11,7 @@
 <!-- BEGIN: Vendor JS-->
 <script src="{{ asset('plugins/app-assets/vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN Vendor JS-->
-
+<script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 <!-- BEGIN: Page Vendor JS-->
 <script src="{{ asset('plugins/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('plugins/app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js') }}"></script>

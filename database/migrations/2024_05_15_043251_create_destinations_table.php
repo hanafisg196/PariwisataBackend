@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string('title', 200);
+            $table->string('daerah', 200);
             $table->string('cover', 200);
             $table->text('article');
             $table->string('location');
+            $table->unsignedBigInteger('trip_id');
             $table->timestamps();
+
+            $table->foreign("trip_id")->on("trips")->references("id");
         });
     }
 

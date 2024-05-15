@@ -10,4 +10,9 @@ class Image extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
+
+    public function destinations()
+    {
+        return $this->belongsTo(Destination::class, "destination_id", "id");
+    }
 }

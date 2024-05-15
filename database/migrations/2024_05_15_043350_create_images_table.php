@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('image', 300);
+            $table->unsignedBigInteger('destination_id');
             $table->timestamps();
+
+            $table->foreign("destination_id")->on("destinations")->references("id");
         });
     }
 

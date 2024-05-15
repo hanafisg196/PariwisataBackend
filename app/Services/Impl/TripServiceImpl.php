@@ -29,6 +29,7 @@ class TripServiceImpl implements TripService {
         {
             $validate['cover'] = $request->file('cover')->store('images');
         }
+        
         $trip->create($validate);
     }
 

@@ -11,5 +11,8 @@ class Trip extends Model
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
 
-
+    public function destinations()
+    {
+        return $this->hasMany(Destination::class, "trip_id", "id");
+    }
 }

@@ -19,7 +19,7 @@
         </div>
         <div class="dt-action-buttons text-end">
             <div class="dt-buttons d-inline-flex">
-                <a href="/destination/add" class="btn btn-gradient-primary pull-right">
+                <a href="/destination/addform" class="btn btn-gradient-primary pull-right">
                     <span><i data-feather='plus'></i> Add Wallpaper</span>
                 </a>
             </div>
@@ -29,47 +29,41 @@
     <div class="card-body mt-2">
         <div class="row">
             @include('_partials.alert')
-            {{-- @foreach ($data as $item) --}}
-            <div class="col-md-2">
+            @foreach ($data as $item)
+            <div class="col-md-3">
                 <div class="card border-0 text-white">
-                    <img class="card-img"
-                        {{-- src="{{asset('storage/'. $item->thumbnail)}}" --}}
-                    alt="wallpaper" height="300">
-
+                    <img class="card-img" src="{{asset('storage/'. $item->cover)}}"
+                     alt="Card" height="200">
                     <div class="card-img-overlay bg-overlay">
+                        <h4 class="card-title text-white">{{ $item->title }}</h4>
                         <div class="btn-group">
-                            <a type="button" class="btn btn-icon btn-warning waves-effect
-                                waves-float waves-light"
-                                 href="/destination/update">
-                                <span><i data-feather='edit-2'></i></span>
+                            <a type="button" class="btn btn-icon btn-warning
+                               waves-effect waves-float waves-light"
+                               data-bs-toggle="modal"
+                               data-bs-target="#editModal">
+                               <span><i data-feather='edit-2'></i></span>
                             </a>
-                           
-                            <form action="/destination/delete/" method="post">
-                                @csrf
-                            <button type="submit" class="btn btn-icon btn-danger
+                                &nbsp;
+                                <form action="/destination/delete/{{ $item->id }}" method="post">
+                                        @csrf
+                                <button type="submit" class="btn btn-icon btn-danger
                                 waves-effect waves-float waves-light"
-                                data-bs-toggle="tooltip"
-                                 data-bs-placement="top">
-                            <span><i data-feather='trash-2'></i></span>
-                            </button>
-                           </form>
-                          
-                            <a type="button" href=""
-                                class="btn btn-icon btn-primary waves-effect waves-float waves-light">
-                                <span><i data-feather='bell'></i></span>
-                            </a>
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top">
+                                <span><i data-feather='trash-2'></i></span>
+                                    </button>
+                                </form>
                         </div>
                     </div>
-                    
                 </div>
-              
             </div>
-            {{-- @endforeach --}}
+               
+            @endforeach
         </div>
     </div>
 
     <div class="card-footer">
-        {{-- {{ $data->links() }} --}}
+        {{ $data->links() }}
     </div>
 </div>
 

@@ -11,4 +11,14 @@ class Destination extends Model
     
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, "destination_id", "id");
+    }
+
+    public function trips()
+    {
+        return $this->belongsTo(Trip::class, "trip_id", "id");
+    }
 }
