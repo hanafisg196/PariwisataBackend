@@ -1,0 +1,76 @@
+/*================================================================================
+	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+	Version: 2.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 75%;
+  left: 0;
+  padding: 1rem;
+}
+
+.card .card-img-overlay.bg-overlay {
+  background-image: initial;
+  background-color: transparent;
+}
+
+div.dataTables_filter,
+div.dataTables_length,
+div.dataTables_info,
+div.dataTables_paginate {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.tags_card {
+  height: 110px;
+  background: #222222;
+  opacity: 0.4;
+  border-radius: 5px;
+}
+
+.color_card {
+  height: 110px;
+  opacity: 0.4;
+  border-radius: 5px;
+}
+
+.color-label {
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background: #9288f3;
+}
+
+.color-label-checkbox {
+  background: #9288f3;
+  height: 40px;
+  display: inline-block;
+  width: 40px;
+  border-radius: 0px;
+  line-height: 40px;
+  border-top-left-radius: 5px;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+}
+
+.color-label-text {
+  height: 40px;
+  text-align: left;
+  line-height: 40px;
+  padding-left: 20px;
+  background: #0000005e;
+  display: inline-block;
+  padding-right: 20px;
+  border-top-right-radius: 5px;
+  color: white;
+  border-bottom-right-radius: 5px;
+}
