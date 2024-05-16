@@ -63,10 +63,9 @@
                         <img src="{{asset('storage/'. $destination->cover)}}" class="thumb-preview img-fluid" alt="">
                     </div>
                   @else
-                    <img class="thumb-preview img-fluid" alt="">
+                    <img class="cover-preview img-fluid" alt="">
                   @endif
-                  {{-- <input class="form-control" name="cover" onchange="previewCover()" value="{{old('cover',$destination->cover)}}" id="cover" type="file"> --}}
-                    
+                  <input class="form-control" name="cover" id="cover" type="file">
                 </div>
                  </div>
                 <div class="col-md-8">
@@ -132,8 +131,7 @@
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
         }
     }
-});
-
+    });
 
 </script>
 @endsection

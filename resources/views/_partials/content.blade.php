@@ -40,6 +40,7 @@ data-textdirection="ltr">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Destination</span></a>
             </li>
 
+            <livewire:clear-temporary/>
 
 
         </ul>
@@ -68,6 +69,8 @@ data-textdirection="ltr">
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 @yield('script')
+
+
 @livewireScripts
 </body>
 </html>

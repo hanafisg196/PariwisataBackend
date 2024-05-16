@@ -16,6 +16,7 @@
                     </button>
                 </div>
             </form>
+            <livewire:clear-temporary />
         </div>
         <div class="dt-action-buttons text-end">
             <div class="dt-buttons d-inline-flex">

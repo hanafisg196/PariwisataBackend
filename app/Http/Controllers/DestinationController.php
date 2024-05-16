@@ -47,11 +47,6 @@ class DestinationController extends Controller
         return redirect()->back()->with('success', 'image update successfully');
     }
 
-    public function deleteImage(Request $request)
-    {
-            $this->destinationService->deleteImage($request);
-            return redirect()->back()->with('success', 'image update successfully');
-    }
     public function create(Request $request)
     {
         $this->destinationService->createDestination($request);

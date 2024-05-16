@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UploadImageTmpController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Livewire\ClearTemporary;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'doLogin'] );
+
 
 Route::middleware(AdminMiddleware::class)->group(function (){
     Route::post('/logout', [LoginController::class, 'doLogout'] );
@@ -39,6 +41,6 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::post('destination/deleteimage', [DestinationController::class, 'deleteImage']);
     Route::post('/upload', [UploadImageTmpController::class, 'store']);
     Route::delete('/delete', [DeleteImageTmpController::class, 'refert']);
-    Route::post('/refersh', [DeleteImageTmpController::class, 'onRefreshTmpDelete'])->name('refresh.tmp.delete');
+   
 });
 

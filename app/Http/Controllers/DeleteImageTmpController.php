@@ -17,18 +17,6 @@ class DeleteImageTmpController extends Controller
       }
       return response()->noContent();
    }
-
-   public function onRefreshTmpDelete()
-   {
-   $temporaryImage = Temporary::all();
-    foreach ($temporaryImage as $tmp) {
-        Storage::delete($tmp->file);
-        $tmp->delete();
-    }
-
-    return response()->json(['message' => 'Temporary files deleted successfully']);
-   }
-   
       
    
 }

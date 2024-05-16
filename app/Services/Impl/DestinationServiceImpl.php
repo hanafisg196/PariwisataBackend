@@ -126,19 +126,7 @@ class DestinationServiceImpl implements DestinationService
         $destinaton->destroy($id);
        
     }
-    public function deleteImage(Request $request){
-        $imageId = $request->input('image_id');
-        $image = Image::find($imageId);
-        
-        if ($image) {
-            Storage::delete($image->image);
-            $image->delete();
-            return response()->json(['message' => 'Image deleted successfully'], 200);
-        } else {
-            return response()->json(['message' => 'Image not found'], 404);
-        }
-    }
-    
+  
 
     
 }
