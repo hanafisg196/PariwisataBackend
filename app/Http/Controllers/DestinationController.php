@@ -28,6 +28,30 @@ class DestinationController extends Controller
             ]
         );
     }
+    public function updateView($id)
+    {
+        
+        $destination = $this->destinationService->getDestinationByid($id);
+        $trip = $this->destinationService->getTrip();
+        return view('dashboard.destinationupdate')->with(
+            [
+                'destination' => $destination,
+                'trip' => $trip,
+            ]
+        );
+    }
+
+    public function updateDestination(Request $request, $id)
+    {
+        $this->destinationService->updateDestination($request,$id);
+        return redirect()->back()->with('success', 'image update successfully');
+    }
+
+    public function deleteImage(Request $request)
+    {
+            $this->destinationService->deleteImage($request);
+            return redirect()->back()->with('success', 'image update successfully');
+    }
     public function create(Request $request)
     {
         $this->destinationService->createDestination($request);

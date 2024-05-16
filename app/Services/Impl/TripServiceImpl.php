@@ -65,6 +65,15 @@ class TripServiceImpl implements TripService {
         $trip->destroy($id);
     }
 
+    public function updateImage($id)
+    {
+
+    }
+
+    public function deleteImage($id){
+        
+    }
+
   
 }
     

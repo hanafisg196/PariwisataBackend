@@ -1,9 +1,5 @@
 @extends('_partials.content')
 @section('content')
-
-
-
-
 <div class="row">
     <div class="col-xl-2 col-md-4 col-sm-6">
         <div class="card text-center">
@@ -29,10 +25,5 @@
             </div>
         </div>
     </div>
-   
-    
 </div>
-
-
-
 @endsection

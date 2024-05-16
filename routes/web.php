@@ -32,8 +32,13 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::post('trip/update/{id}', [TripController::class, 'update']);
     Route::get('destination/addform', [DestinationController::class, 'addView']);
     Route::post('destination/create', [DestinationController::class, 'create']);
+    Route::get('destination/view/{id}', [DestinationController::class, 'updateView']);
+    Route::post('destination/update/{id}', [DestinationController::class, 'updateDestination']);
     Route::post('destination/delete/{id}', [DestinationController::class, 'delete']);
+    Route::post('destination/updateimage', [DestinationController::class, 'updateImage']);
+    Route::post('destination/deleteimage', [DestinationController::class, 'deleteImage']);
     Route::post('/upload', [UploadImageTmpController::class, 'store']);
     Route::delete('/delete', [DeleteImageTmpController::class, 'refert']);
+    Route::post('/refersh', [DeleteImageTmpController::class, 'onRefreshTmpDelete'])->name('refresh.tmp.delete');
 });
 

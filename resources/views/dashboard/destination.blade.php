@@ -37,12 +37,12 @@
                     <div class="card-img-overlay bg-overlay">
                         <h4 class="card-title text-white">{{ $item->title }}</h4>
                         <div class="btn-group">
-                            <a type="button" class="btn btn-icon btn-warning
-                               waves-effect waves-float waves-light"
-                               data-bs-toggle="modal"
-                               data-bs-target="#editModal">
-                               <span><i data-feather='edit-2'></i></span>
+                            <a type="button" class="btn btn-icon btn-warning waves-effect
+                                waves-float waves-light"
+                                 href="/destination/view/{{ $item->id }}">
+                                <span><i data-feather='edit-2'></i></span>
                             </a>
+                           
                                 &nbsp;
                                 <form action="/destination/delete/{{ $item->id }}" method="post">
                                         @csrf

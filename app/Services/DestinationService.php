@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 interface DestinationService
 {
     public function createDestination(Request $request);
-    public function updateDestination();
+    public function updateDestination(Request $request, $id);
     public function deleteDestination($id);
     public function getTrip();
     public function getDestination();
+    public function getDestinationByid($id);
+    public function deleteImage(Request $request);
+    
 
 }
