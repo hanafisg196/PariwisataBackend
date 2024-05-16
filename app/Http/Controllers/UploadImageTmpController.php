@@ -9,21 +9,18 @@ class UploadImageTmpController extends Controller
 {
     public function store(Request $request)
     {
-        
         if ($request->hasFile('image')) {
-               $image = $request->file('image');
-               $fileName = $image->getClientOriginalName();
-               $folder = uniqid('image-', true);
-               $image->storeAs('images/tmp/' .$folder, $fileName);
-                
-               Temporary::create([
-                'folder' => $folder,
-                'filename'=> $fileName
-               ]);
-               
-               return $folder;
-           
+            $image = $request->file('image');
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $file = $image->storeAs('images/tmp/'. $fileName);
+    
+            Temporary::create([
+                'file' => $file
+            ]);
+    
+            return $file;
         }
+    
         return '';
     }
     

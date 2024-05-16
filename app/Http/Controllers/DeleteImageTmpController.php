@@ -10,11 +10,10 @@ class DeleteImageTmpController extends Controller
 {
    public function refert()
    {
-      $temporaryImage = Temporary::where('folder', request()->getContent())->first();
-      if($temporaryImage)
-      {
-         Storage::deleteDirectory('images/tmp/'.$temporaryImage->folder);
-         $temporaryImage->delete();
+      $fileTmp = Temporary::where('file', request()->getContent())->first();
+      if ($fileTmp) {
+          Storage::delete($fileTmp->file);
+          $fileTmp->delete();
       }
       return response()->noContent();
    }

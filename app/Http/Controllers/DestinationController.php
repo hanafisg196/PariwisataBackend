@@ -31,11 +31,11 @@ class DestinationController extends Controller
     public function create(Request $request)
     {
         $this->destinationService->createDestination($request);
-        return redirect('destination')->with('success', 'Destination added successfully');
+        return redirect('/destination/addform/');
     }
     public function delete($id)
     {
         $this->destinationService->deleteDestination($id);
-        return redirect()->back()->with('success', 'Trip added successfully');
+        return redirect()->back()->with('success', 'Destination added successfully');
     }
 }

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('temporaries', function (Blueprint $table) {
             $table->id();
-            $table->string('folder');
-            $table->string('filename');
+            $table->string('file');
             $table->timestamps();
         });
     }

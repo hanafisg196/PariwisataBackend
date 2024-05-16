@@ -4,6 +4,7 @@
             {{ session('success') }}
         </div>
     </div>
+    
 @elseif($errors->any())
     <div class="row">
         <div class="alert alert-danger col-sm-3 ml-3 mb-2" role="alert">

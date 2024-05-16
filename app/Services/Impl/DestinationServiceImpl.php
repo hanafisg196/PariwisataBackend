@@ -21,10 +21,29 @@ class DestinationServiceImpl implements DestinationService
     }
 
 
+    public function createImage($tmpFile,$idFile)
+    {
+        foreach($tmpFile as $tmp)
+        {
+            $sourcePath = $tmp->file;
+            $destinationPath = 'images/'. basename($sourcePath);
+            Storage::copy($sourcePath, $destinationPath);
+            Image::create([
+                'destination_id' => $idFile,
+                'image' => $destinationPath
+            ]);
+            Storage::delete($sourcePath);
+            $tmp->delete();
+        }
+    }
+
+
     public function createDestination(Request $request)
     {
+        $temporaryImage = Temporary::all();
         
-        $validate = Validator::make($request->all(),[
+        $validate = Validator::make($request->all(),
+        [
             'title' => 'required|max:200',
             'daerah' => 'required|max:200',
             'cover' => 'required|mimes:png,jpg',
@@ -34,34 +53,28 @@ class DestinationServiceImpl implements DestinationService
             'image.*' => 'required|mimes:png,jpg',
         ]);
         
-        $temporaryImage = Temporary::all();
-
+     
         if($validate->fails()){
             foreach($temporaryImage as $tmp)
             {
-                Storage::deleteDirectory('images/tmp/'. $tmp->follder);
-                $tmp->delete();
+                Storage::delete($tmp->file);
+                    $tmp->delete();
             }
-            return redirect()->back()->withErrors($validate)->withInput();
+            return redirect('/destination/addform/')
+            ->withErrors($validate)
+            ->withInput();
         }
         $destination = Destination::create($validate->validated());
+        $destinationId =  $destination->id;
         if($request->file('cover'))
         {
             $destination->cover = $request->file('cover')->store('images');
+            $destination->save();
         }
-        foreach($temporaryImage as $tmp)
-        {
-            Storage::copy('images/tmp/'. $tmp->folder . '/' . $tmp->filename, 'images/' . $tmp->folder . '/' . $tmp->filename);
-            $path = $tmp->folder . '/' . $tmp->filename;
-            Image::create([
-                'destination_id' => $destination->id,
-                'image' => $tmp->filename = $path
-            ]);
-            Storage::deleteDirectory('images/tmp/'. $tmp->follder);
-            $tmp->delete();
-        }
-        
 
+        $this->createImage($temporaryImage,$destinationId);
+        return redirect('destination')->with('success', 'Destination added successfully');
+      
     }
     
     public function updateDestination()
