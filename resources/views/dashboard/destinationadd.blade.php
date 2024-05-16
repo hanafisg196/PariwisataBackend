@@ -107,6 +107,7 @@ const pond = FilePond.create(inputElement, {
     allowMultiple: true, // Allow multiple files
     server: {
         process: '/upload',
+        revert: '/delete',
         headers: {
             'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token from your server-side framework
         }

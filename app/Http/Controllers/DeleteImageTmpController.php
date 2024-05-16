@@ -8,14 +8,17 @@ use Illuminate\Support\Facades\Storage;
 
 class DeleteImageTmpController extends Controller
 {
-   public function store()
+   public function refert()
    {
       $temporaryImage = Temporary::where('folder', request()->getContent())->first();
       if($temporaryImage)
       {
-         Storage::deleteDirectory('tmp/'. $temporaryImage->folder);
+         Storage::deleteDirectory('images/tmp/'.$temporaryImage->folder);
          $temporaryImage->delete();
       }
       return response()->noContent();
    }
+   
+      
+   
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeleteImageTmpController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TripController;
@@ -33,5 +34,6 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::post('destination/create', [DestinationController::class, 'create']);
     Route::post('destination/delete/{id}', [DestinationController::class, 'delete']);
     Route::post('/upload', [UploadImageTmpController::class, 'store']);
+    Route::delete('/delete', [DeleteImageTmpController::class, 'refert']);
 });
 
