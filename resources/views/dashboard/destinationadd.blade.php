@@ -6,7 +6,7 @@
         <div class="head-label"></div>
         <div class="dt-action-buttons text-end">
 </div>
-    
+
     <form class="auth-login-form mt-2" method="post" action="/destination/create/"enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
@@ -19,7 +19,7 @@
                         </div>
                         <input type="text" class="form-control @error('title') is-invalid @enderror"
                          value="{{ old('title') }}" id="title" name="title"
-                          placeholder="Wisata Mandeh" required autofocus>
+                          placeholder="Nama Wisata" required autofocus>
                     </div>
                 </div>
 
@@ -90,12 +90,31 @@
                         placeholder="Jl. Wisata satu" required autofocus>
                     </div>
                 </div>
+                <div class="col-md-8">
+                    <div class="mb-1" id="cordinat" style="display: block">
+                        <div class="mb-1">
+                            <label for="cordinat">Kordinat</label>
+                        </div>
+                        <div class="mb-1">
+                            <input type="text" class="form-control @error('latitude') is-invalid @enderror"
+                            id="latitude" value="{{ old('latitude') }}" name="latitude"
+                            placeholder="latitude ex:-6.175110 'tampa tanda ,'" required autofocus>
+                        </div>
+                        <div class="mb-1">
+                            <input type="text" class="form-control @error('longitude') is-invalid @enderror"
+                            id="longitude" value="{{ old('longitude') }}" name="longitude"
+                            placeholder="longitude ex:106.865036" required autofocus>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
-                    
+
             <button class="btn btn-gradient-primary float-end" type="submit">Submit</button>
-            
+
         </div>
     </form>
 </div>
@@ -118,6 +137,6 @@
     }
     });
 
- 
+
 </script>
 @endsection

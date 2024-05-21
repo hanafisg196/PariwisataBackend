@@ -20,3 +20,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/tripslide', [ApiServiceController::class, 'tripSlide'] );
+Route::get('/destinations', [ApiServiceController::class, 'destinationList'] );
+Route::get('/destination/{id}', [ApiServiceController::class, 'destination'] );
+Route::get('/trips', [ApiServiceController::class, 'trips'] );
+Route::get('/trip/{id}', [ApiServiceController::class, 'trip'] );
+Route::get('/tripdetail/{id}', [ApiServiceController::class, 'tripDetail'] );
+Route::get('/search', [ApiServiceController::class, 'search'] );
+Route::get('/recommended', [ApiServiceController::class, 'recomendDestination'] );

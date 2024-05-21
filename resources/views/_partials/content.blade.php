@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" 
+<html class="loading" lang="en"
 data-textdirection="ltr">
 @include('_partials/head')
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
@@ -29,15 +29,16 @@ data-textdirection="ltr">
                 href="/dashboard"><i data-feather="home">
             </i><span class="menu-title text-truncate" data-i18n="Home">Dashboard</span></a>
             </li>
-            <li class=" nav-item {{ request()->segment(1)=='trip'? 'active' : '' }}">
-                <a class="d-flex align-items-center"
-                href="/trip"><i data-feather="map-pin">
-            </i><span class="menu-title text-truncate" data-i18n="appsetting">Trip</span></a>
-            </li>
+
             <li class=" nav-item {{ request()->segment(1)=='destination'? 'active' : '' }}">
                 <a class="d-flex align-items-center"
                 href="/destination"><i data-feather="compass">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Destination</span></a>
+            </li>
+            <li class=" nav-item {{ request()->segment(1)=='trip'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
+                href="/trip"><i data-feather="map-pin">
+            </i><span class="menu-title text-truncate" data-i18n="appsetting">Trip</span></a>
             </li>
 
             <livewire:clear-temporary/>

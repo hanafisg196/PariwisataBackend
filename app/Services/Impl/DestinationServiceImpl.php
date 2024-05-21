@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Temporary;
 use App\Models\Trip;
 use App\Services\DestinationService;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -25,6 +26,7 @@ class DestinationServiceImpl implements DestinationService
     {
         return Destination::find($id);
     }
+
     public function copyTmpToImage($tmpFile,$idFile)
     {
         foreach($tmpFile as $tmp)
@@ -45,7 +47,7 @@ class DestinationServiceImpl implements DestinationService
     public function createDestination(Request $request)
     {
         $temporaryImage = Temporary::all();
-        
+
         $validate = Validator::make($request->all(),
         [
             'title' => 'required|max:200',
@@ -55,9 +57,11 @@ class DestinationServiceImpl implements DestinationService
             'location' => 'required|max:100',
             'trip_id' => 'required',
             'image.*' => 'mimes:png,jpg',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
         ]);
-        
-     
+
+
         if($validate->fails()){
             foreach($temporaryImage as $tmp)
             {
@@ -79,7 +83,7 @@ class DestinationServiceImpl implements DestinationService
         $this->copyTmpToImage($temporaryImage,$destinationId);
         return redirect('/destination/addform/')->with('success', "Success added destination");
     }
-    
+
     public function updateDestination(Request $request, $id)
     {
         $temporaryImage = Temporary::all();
@@ -91,8 +95,10 @@ class DestinationServiceImpl implements DestinationService
             'article' => 'required|max:1000',
             'location' => 'required|max:100',
             'trip_id' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
         ]);
-       
+
         if($request->hasFile('cover') && $request->file('cover')->isValid())
         {
             if ($destination->cover)
@@ -102,17 +108,17 @@ class DestinationServiceImpl implements DestinationService
 
             $validate['cover'] = $request->file('cover')->store('images');
         }
-        
+
         $destination->update($validate);
         $this->copyTmpToImage($temporaryImage,$destination->id);
     }
-    
+
 
 
     public function DeleteDestination($id)
     {
         $destinaton = Destination::find($id);
-     
+
         if($destinaton->cover)
         {
             Storage::delete($destinaton->cover);
@@ -124,9 +130,28 @@ class DestinationServiceImpl implements DestinationService
         }
 
         $destinaton->destroy($id);
-       
-    }
-  
 
-    
+    }
+
+    public function searchDestination(Request $request)
+    {
+        $destinations = Destination::when($request->has('search'), function($query) use ($request)
+        {
+            $query->where('title', 'LIKE', '%' . $request->search . '%');
+
+        });
+        return $destinations->paginate(10);
+    }
+
+    public function mapLink($id)
+    {
+        $destination = Destination::find($id);
+        $lat = $destination->latitude;
+        $long = $destination->longitude;
+        $googleMapsUrl = "https://www.google.com/maps?q={$lat},{$long}";
+
+        return json_encode($googleMapsUrl);
+    }
+
+
 }

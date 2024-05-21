@@ -4,7 +4,17 @@
 <div class="card">
     <div class="card-header border-bottom p-1">
         <div class="head-label"></div>
-        
+        <form action="/trip/search" method="get">
+            @csrf
+            <div class="dt-buttons d-inline-flex">
+                <input type="text" class="form-control" id="search"
+                name="search" placeholder="Search" value="{{ request('search') }}">
+                &nbsp;
+                <button type="submit" class="btn btn-icon btn-primary waves-effect waves-float waves-light">
+                    <span><i data-feather='search'></i></span>
+                </button>
+            </div>
+        </form>
         <div class="dt-action-buttons text-end">
             <div class="dt-buttons d-inline-flex">
                 <button type="button"
@@ -14,9 +24,9 @@
                  data-feather='plus'></i> Add Trip</span></button>
             </div>
         </div>
-        
+
     </div>
-   
+
     <div class="card-body mt-2">
         <div class="row">
             @include('_partials.alert')
@@ -31,7 +41,7 @@
                                 <a type="button" class="btn btn-icon btn-warning
                                    waves-effect waves-float waves-light"
                                    data-bs-toggle="modal"
-                                   data-bs-target="#editModal">
+                                   data-bs-target="#editModal{{ $item->id }}">
                                    <span><i data-feather='edit-2'></i></span>
                                 </a>
                                     &nbsp;
@@ -51,8 +61,8 @@
              @endforeach
 
              @foreach ($data as $item)
-                <div class="modal fade" id="editModal" tabindex="-1"
-                aria-labelledby="editModalTitle" aria-hidden="true">
+             <div class="modal fade" id="editModal{{ $item->id }}" tabindex="-1"
+                aria-labelledby="editModalTitle{{ $item->id }}" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -96,12 +106,12 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                   
+
                                         <button type="submit"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-placement="top"
                                                 class="btn btn-gradient-primary float-end">Submit</button>
-                                  
+
                                 </div>
                             </form>
                         </div>
@@ -140,8 +150,8 @@
                                          {{ $message }}
                                      </div>
                                   @enderror
-                                     
-                                        
+
+
                                 </div>
                                 <div class="mb-1">
                                     <label for="cover">Cover</label>

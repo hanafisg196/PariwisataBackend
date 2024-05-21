@@ -18,7 +18,7 @@ class TripController extends Controller
     public function index()
     {
         $data = $this->tripService->getTrip();
-        
+
         return view('dashboard.trip')->with([
                 'data' => $data
         ]);
@@ -33,5 +33,19 @@ class TripController extends Controller
     {
         $this->tripService->updateTrip($request, $id);
         return redirect()->back()->with('success', 'Trip added successfully');
+    }
+    public function delete($id)
+    {
+        $this->tripService->deleteTrip($id);
+        return redirect()->back()->with('success', 'Trip deleted successfully');
+    }
+
+    public function search(Request $request)
+    {
+
+        $data = $this->tripService->searchTrip($request);
+        return view('dashboard.trip')->with([
+            'data' => $data
+        ]);
     }
 }

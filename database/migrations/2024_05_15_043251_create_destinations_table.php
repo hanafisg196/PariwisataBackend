@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('article');
             $table->string('location');
             $table->unsignedBigInteger('trip_id');
+            $table->decimal('latitude', 10, 7);
+            $table->decimal('longitude', 10, 7);
             $table->timestamps();
 
             $table->foreign("trip_id")->on("trips")->references("id");

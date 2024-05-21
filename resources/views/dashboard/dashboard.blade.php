@@ -9,7 +9,7 @@
                         <i data-feather="map-pin"></i>
                     </div>
                 </div>
-                <h2 class="fw-bolder">10</h2>
+                <h2 class="fw-bolder">{{ $trip }}</h2>
                 <p class="card-text">Trips</p>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 <div class="avatar bg-light-warning p-50 mb-1">
                     <div class="avatar-content"><i data-feather="compass"></i></div>
                 </div>
-                <h2 class="fw-bolder">10</h2>
+                <h2 class="fw-bolder">{{$destination}}</h2>
                 <p class="card-text">Destinations</p>
             </div>
         </div>

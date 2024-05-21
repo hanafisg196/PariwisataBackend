@@ -10,6 +10,7 @@ interface TripService {
     public function createTrip(Request $request);
     public function updateTrip(Request $request,$id);
     public function deleteTrip($id);
-   
+    public function searchTrip(Request $request);
+
 
 }

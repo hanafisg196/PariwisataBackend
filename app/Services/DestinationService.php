@@ -12,5 +12,7 @@ interface DestinationService
     public function getTrip();
     public function getDestination();
     public function getDestinationByid($id);
+    public function searchDestination(Request $request);
+    public function mapLink($id);
 
 }

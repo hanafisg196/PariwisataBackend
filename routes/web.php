@@ -7,7 +7,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UploadImageTmpController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Livewire\ClearTemporary;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +30,7 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::get('trip', [TripController::class, 'index']);
     Route::get('destination', [DestinationController::class, 'index']);
     Route::post('trip/add', [TripController::class, 'add']);
+    Route::post('trip/delete/{id}', [TripController::class, 'delete']);
     Route::post('trip/update/{id}', [TripController::class, 'update']);
     Route::get('destination/addform', [DestinationController::class, 'addView']);
     Route::post('destination/create', [DestinationController::class, 'create']);
@@ -41,6 +41,9 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::post('destination/deleteimage', [DestinationController::class, 'deleteImage']);
     Route::post('/upload', [UploadImageTmpController::class, 'store']);
     Route::delete('/delete', [DeleteImageTmpController::class, 'refert']);
-   
+    Route::get('/destination/search', [DestinationController::class, 'search'] );
+    Route::get('/trip/search', [TripController::class, 'search'] );
+    Route::get('/destination/map/{id}', [DestinationController::class, 'showMapLink'] );
+
 });
 

@@ -6,7 +6,7 @@
         <div class="head-label"></div>
         <div class="dt-action-buttons text-end">
 </div>
-    
+
     <form class="auth-login-form mt-2" method="post"
     action="/destination/update/{{ $destination->id }}"enctype="multipart/form-data">
         @csrf
@@ -31,15 +31,12 @@
                         </div>
                         <select name="trip_id" id="trip_id" class="form-control">
                             @foreach ($trip as $itemTrip)
-                            @if (old('trip_id', $itemTrip->id) == $itemTrip->id)
+
                             <option value="{{ $itemTrip->id }}"
-                                 selected> {{ $itemTrip->name}}
+                                 > {{ $itemTrip->name}}
                                 </option>
-                             @else
-                                <option value="{{ $itemTrip->id }}">
-                                {{ $itemTrip->name}}</option>
-                            @endif
                             @endforeach
+
                         </select>
                     </div>
                 </div>
@@ -59,12 +56,13 @@
                         <label for="cover">Cover</label>
                     </div>
                     @if ($destination->cover)
-                    <div style="max-width: 200px; max-height: 300px; overflow: hidden;">
+                    <div style="max-width: 380px; max-height: 300px; overflow: hidden;">
                         <img src="{{asset('storage/'. $destination->cover)}}" class="thumb-preview img-fluid" alt="">
                     </div>
                   @else
                     <img class="cover-preview img-fluid" alt="">
                   @endif
+                <div class="mb-1"></div>
                   <input class="form-control" name="cover" id="cover" type="file">
                 </div>
                  </div>
@@ -83,7 +81,7 @@
                         <div class="mb-1">
                             <label for="image">Activity Image</label>
                         </div>
-                        
+
                         <livewire:delete-image :id="$destination->id" />
 
                         <div class="mb-1">
@@ -96,7 +94,7 @@
 
                     </div>
                 </div>
-                
+
                  <div class="col-md-8">
                     <div class="mb-1" id="location" style="display: block">
                         <div class="mb-1">
@@ -105,6 +103,25 @@
                         <input type="text" class="form-control @error('location') is-invalid @enderror"
                         id="location" value="{{ old('location', $destination->location) }}" name="location"
                         placeholder="Jl. Wisata satu">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="mb-1" id="cordinat" style="display: block">
+                        <div class="mb-1">
+                            <label for="cordinat">Kordinat</label>
+                        </div>
+                        <div class="mb-1">
+                            <input type="text" class="form-control @error('latitude') is-invalid @enderror"
+                            id="latitude" value="{{ $destination->latitude }}" name="latitude"
+                            placeholder="latitude ex:-6.175110," required autofocus>
+                        </div>
+                        <div class="mb-1">
+                            <input type="text" class="form-control @error('longitude') is-invalid @enderror"
+                            id="longitude" value="{{ $destination->longitude }}" name="longitude"
+                            placeholder="longitude ex:106.865036," required autofocus>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

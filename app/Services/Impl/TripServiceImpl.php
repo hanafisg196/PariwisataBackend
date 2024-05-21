@@ -22,24 +22,24 @@ class TripServiceImpl implements TripService {
         $trip = new Trip;
         $validate = $request->validate([
                 'name' => 'required', 'max:100',
-                'cover' => 'required', 'mimes:png,jpg'
+                'cover' => 'required|mimes:png,jpg'
         ]);
 
         if($request->file('cover'))
         {
             $validate['cover'] = $request->file('cover')->store('images');
         }
-        
+
         $trip->create($validate);
     }
 
-    public function updateTrip(Request $request,$id)
+    public function updateTrip(Request $request, $id)
     {
         $trip = Trip::find($id);
+
         $validate = $request->validate([
-            'name' =>'required','max:100',
-            'cover' =>'mimes:png,jpg'
-    
+            'name' => 'required|max:100',
+            'cover' => 'mimes:png,jpg'
         ]);
 
         if($request->hasFile('cover') && $request->file('cover')->isValid())
@@ -51,8 +51,12 @@ class TripServiceImpl implements TripService {
 
             $validate['cover'] = $request->file('cover')->store('images');
         }
+
         $trip->update($validate);
+
+        return response()->json(['message' => 'Trip updated successfully']);
     }
+
 
     public function deleteTrip($id)
     {
@@ -64,16 +68,16 @@ class TripServiceImpl implements TripService {
 
         $trip->destroy($id);
     }
-
-    public function updateImage($id)
+    public function searchTrip(Request $request)
     {
+        $destinations = Trip::when($request->has('search'), function($query) use ($request)
+        {
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
 
+        });
+        return $destinations->paginate(10);
     }
 
-    public function deleteImage($id){
-        
-    }
 
-  
+
 }
-    
