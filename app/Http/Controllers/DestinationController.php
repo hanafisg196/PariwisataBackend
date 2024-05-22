@@ -51,7 +51,7 @@ class DestinationController extends Controller
     public function create(Request $request)
     {
         $this->destinationService->createDestination($request);
-        return redirect('/destination/addform/');
+        return redirect('/destination/addform');
     }
     public function delete($id)
     {

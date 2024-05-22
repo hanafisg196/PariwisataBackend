@@ -7,7 +7,7 @@
         <div class="dt-action-buttons text-end">
 </div>
 
-    <form class="auth-login-form mt-2" method="post" action="/destination/create/"enctype="multipart/form-data">
+    <form class="auth-login-form mt-2" method="post" action="/destination/create"enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
             <div class="row">
